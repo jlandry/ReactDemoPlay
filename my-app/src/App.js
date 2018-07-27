@@ -7,6 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.name = 'Jonathan.';
+    this.count = 0;
   }
   changeName() {
     console.log(this.name);
@@ -27,7 +28,7 @@ class App extends React.Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div onClick={this.changeName.bind(this)}>Click Me!</div>
-        <ShoppingList name={this.name} onClick={this.changeName.bind(this)}/>
+        <ShoppingList name={this.name} onClick={this.changeName.bind(this)} count={this.count} />
       </div>
     );
   }

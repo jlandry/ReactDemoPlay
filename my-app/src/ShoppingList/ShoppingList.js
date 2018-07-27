@@ -5,16 +5,19 @@ import Counter from './Counter';
 export class NotShoppingList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {'count': 0};
+    console.log(props)
+    this.state = {'count': this.props.count};
+    this.count = this.props.count;
   }
   
   getClick() { 
-    this.setState({count : this.state.count + 1});
-    console.log('clicked NotShoppingLIst',this.state.count );
+    this.count++
+    this.setState({count : this.count});
+    console.log('local var: ' + this.count, 'state var: ' + this.state.count);
   }
   render() {
       return ( 
-          <Counter onClick = {this.getClick.bind(this)} count={this.state.count} />
+          <Counter onClick = {this.getClick.bind(this)} count={this.count} />
       )
   }
 }
@@ -23,6 +26,7 @@ export class ShoppingList extends React.Component {
     super(props);
     this.state = {nameValue: this.props.name};
     this.count = 0;
+    console.log(this.props)
   }
 
   componentWillReceiveProps(props) {
@@ -44,7 +48,7 @@ export class ShoppingList extends React.Component {
           <li>WhatsApp</li>
           <li>Oculus</li>
         </ul>
-          <NotShoppingList />
+          <NotShoppingList count={this.props.count} />
       </div>
     );
   }
