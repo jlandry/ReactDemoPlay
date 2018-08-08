@@ -2,20 +2,29 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {ShoppingList} from './ShoppingList/ShoppingList';
+import TableContainer from './CarModel/CarComponent';
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 class App extends React.Component {
+  state = {name: 'Jonathan.', count: 0};
   constructor(props) {
     super(props);
-    this.name = 'Jonathan.';
-    this.count = 0;
+    this.changeCount = this.changeCount.bind(this);
+    this.changeName = this.changeName.bind(this);
   }
+  
   changeName() {
-    console.log(this.name);
-    if (this.name === 'Jonathan.'){
-      this.name = 'notJonathan.';
+    if (this.state.name === 'Jonathan.'){
+      this.setState({name: 'notJonathan.'});
     } else {
-      this.name = 'Jonathan.';
+
+      this.setState({name: 'Jonathan.'});
     }
+    console.log(this.name);
+  }
+
+  changeCount() {
+      this.setState({count: this.state.count +1 });
   }
   render() {
     return (
@@ -27,8 +36,11 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div onClick={this.changeName.bind(this)}>Click Me!</div>
-        <ShoppingList name={this.name} onClick={this.changeName.bind(this)} count={this.count} />
+        <button onClick={this.changeName}>Click Me to change the name on the parent App. {this.state.name}</button>
+        <br/>
+        <button onClick={this.changeCount}>Click Me to change the Count on the parent App. {this.state.count}</button>
+        <ShoppingList name={this.state.name} onClick={this.changeName} count={this.state.count} />
+        <TableContainer />
       </div>
     );
   }
