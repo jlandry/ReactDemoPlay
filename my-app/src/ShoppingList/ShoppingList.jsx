@@ -5,10 +5,9 @@ import Counter from './Counter';
 export class NotShoppingList extends React.Component {
   state = {'count': this.props.count};
   
-  constructor(props) {
-    super(props);
-    this.getClickCount.bind.this
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   
   componentWillReceiveProps(nextProps) {
     // const { refresh, id } = this.props;
@@ -19,23 +18,22 @@ export class NotShoppingList extends React.Component {
     }
   }
 
-  getClickCount(count) { 
-    this.count = count + 1;
-    console.log(this.count);
+  getClickCount(oldCount) { 
+    this.setState({count: oldCount + 1});
+    console.log(oldCount+1);
   }
   render() {
     this.count = this.props.count;
       return (
         <span>
-          <button onClick={() => { this.getClickCount(this.count)}}> 
-            Not Shopping increases count es6 {this.count}
+          <button onClick={() => { this.getClickCount(this.state.count)}}> 
+            Not Shopping count++ es6 {this.state.count}
           </button> 
-          <button onClick={this.getClickCount.bind(this, this.count)}> 
-            Not Shopping increases count bind'(this) '{this.count}
-          </button> 
-          <Counter onClick={() => { this.getClickCount(this.count)}} count={this.count} />
-
-          <Counter onClick={() => {this.getClickCount.bind(this, this.count)}} count={this.count} />
+          <button onClick={this.getClickCount.bind(this, this.state.count)}> 
+            Not Shopping count++ bind {this.state.count}
+          </button>  
+          <Counter onClick={() => { this.getClickCount(this.state.count)}} count={this.state.count} />
+          <Counter onClick={this.getClickCount.bind(this, this.state.count)} count={this.state.count} />
         </span>
       )
   }

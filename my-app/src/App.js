@@ -1,48 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {ShoppingList} from './ShoppingList/ShoppingList';
-import TableContainer from './CarModel/CarComponent';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import StateTesting from './StateTesting/StateTesting'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import TicTacToe from './TicTacToe/TicTacToe';
 
 class App extends React.Component {
-  state = {name: 'Jonathan.', count: 0};
-  constructor(props) {
-    super(props);
-    this.changeCount = this.changeCount.bind(this);
-    this.changeName = this.changeName.bind(this);
-  }
-  
-  changeName() {
-    if (this.state.name === 'Jonathan.'){
-      this.setState({name: 'notJonathan.'});
-    } else {
+  render () {
+   return (
+    <Router>
+      <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/statetesting">State Testing</Link>
+        </li>
+        <li>
+          <Link to="/tictactoe">Tic Tac Toe</Link>
+        </li>
+      </ul>
 
-      this.setState({name: 'Jonathan.'});
-    }
-    console.log(this.name);
-  }
+      <hr />
 
-  changeCount() {
-      this.setState({count: this.state.count +1 });
-  }
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onClick={this.changeName}>Click Me to change the name on the parent App. {this.state.name}</button>
-        <br/>
-        <button onClick={this.changeCount}>Click Me to change the Count on the parent App. {this.state.count}</button>
-        <ShoppingList name={this.state.name} onClick={this.changeName} count={this.state.count} />
-        <TableContainer />
-      </div>
-    );
+      <Route exact path="/" component={StateTesting} />
+      <Route path="/statetesting" component={StateTesting} />
+      <Route path="/tictactoe" component={TicTacToe} />
+    </div>
+    </Router>
+   )
   }
 }
 
