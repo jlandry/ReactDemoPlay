@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './ReactDemo/Reducer.js'
 import './index.css';
 import 'typeface-roboto'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-// import Redux from 'redux';
-// import Reducer from './ReactDemo/Reducer'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(todoApp)
+
+ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>, 
+    document.getElementById('root'));
 registerServiceWorker();
