@@ -1,6 +1,7 @@
 import React from 'react'
 
 export class forceUpdate extends React.Component{
+    
     count = 0;
     state = {count: 0}
     NewCount() { 

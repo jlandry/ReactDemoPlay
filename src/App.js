@@ -12,6 +12,7 @@ import {
   setVisibilityFilter,
   VisibilityFilters
 } from './ReactDemo/Actions';
+import TodoApp from './ReactDemo/TodoApp';
 
   // Log the initial state
   console.log(store.getState());
@@ -46,6 +47,9 @@ class App extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/todo">Todo</Link>
+          </li>
+          <li>
             <Link to="/statetesting">State Testing</Link>
           </li>
           <li>
@@ -55,6 +59,7 @@ class App extends React.Component {
         <hr />
           {/* <Switch> */}
         <Route exact path="/" component={StateTesting} />
+        <Route path="/todo" component={TodoApp} />
         <Route path="/statetesting" component={StateTesting} />
         <Route path="/tictactoe" component={TicTacToe} />
       </div>
